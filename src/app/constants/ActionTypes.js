@@ -1,0 +1,19 @@
+// Register
+export const REGISTER_USER = 'REGISTER_USER';
+export const LOGIN_USER = 'LOGIN_USER';
+
+export const USER_REGISTERED = 'USER_REGISTERED';
+export const USER_REGISTER_FAILED = 'USER_REGISTER_FAILED';
+export const USER_REGISTER_SUCCESS = 'USER_REGISTER_SUCCESS';
+
+export const USER_LOGGED_IN = 'USER_LOGGED_IN';
+export const USER_LOGIN_FAILED = 'USER_LOGIN_FAILED';
+export const USER_LOGIN_SUCCESS = 'USER_LOGIN_SUCCESS';
+
+
+export const ADD_TODO = 'ADD_TODO';
+export const DELETE_TODO = 'DELETE_TODO';
+export const EDIT_TODO = 'EDIT_TODO';
+export const COMPLETE_TODO = 'COMPLETE_TODO';
+export const COMPLETE_ALL = 'COMPLETE_ALL';
+export const CLEAR_COMPLETED = 'CLEAR_COMPLETED';
