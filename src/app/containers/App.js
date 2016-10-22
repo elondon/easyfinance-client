@@ -2,38 +2,41 @@ import React, {Component, PropTypes} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import Header from '../components/Header';
-import IncomeStatement from '../components/IncomeStatement'
+import Landing from '../components/pages/loggedout/Landing.react';
+import IncomeStatement from '../components/IncomeStatement';
 import MainSection from '../components/MainSection';
 import * as TodoActions from '../actions/index';
 
 class App extends Component {
-  render() {
-    const {todos, actions} = this.props;
-    return (
-      <div>
-        <Header
-          addTodo={actions.addTodo}
-          />
-        <IncomeStatement/>
-      </div>
-    );
+  constructor() {
+    super();
+  }
+
+  render()
+  {
+      if(this.props.user) {
+
+      } else {
+          return (
+          <div>
+            <Landing/>
+          </div>
+        );
+      }
+
+
   }
 }
 
-App.propTypes = {
-  todos: PropTypes.array.isRequired,
-  actions: PropTypes.object.isRequired
-};
-
 function mapStateToProps(state) {
   return {
-    todos: state.todos
+    user: state.user,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(TodoActions, dispatch)
+    actions: bindActionCreators(dispatch)
   };
 }
 

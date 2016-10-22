@@ -8,11 +8,14 @@ import {Provider} from 'react-redux';
 import App from './app/containers/App';
 import configureStore from './app/store/configureStore';
 import {Router, Route, browserHistory} from 'react-router';
-import rootReducer from './app/reducers'
+import rootReducer from './app/reducers';
+import axios from 'axios';
 
 import './index.scss';
 
 const loggerMiddleware = createLogger()
+
+axios.defaults.baseURL = 'http://localhost:5000/easyfinance/api/v1';
 
 const store = createStore(
   rootReducer,

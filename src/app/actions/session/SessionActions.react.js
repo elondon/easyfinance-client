@@ -1,10 +1,8 @@
-import * as types from '../constants/ActionTypes';
-import * as API from '../constants/EndPoints';
+import { CHANGE_REGISTER_FORM } from '../../constants/ActionTypes';
+import axios from 'axios';
 
-export function
-
-export function requestRegisterUser(email, password) {
-  return {type: types.REGISTER_USER, email, password};
+export function changeRegisterForm(newState) {
+  return { type: CHANGE_REGISTER_FORM, newState};
 }
 
 export function userRegistered(json) {
@@ -15,10 +13,9 @@ export function userRegistered(json) {
   }
 }
 
-function registerUser(email, password) {
+export function registerUser(email, password) {
   return dispatch => {
-    dispatch(requestRegisterUser(username,password))
-    return axios.post(API + '/auth/register?username=username&password=password')
+    return axios.post('http://localhost:5000/easyfinance/api/v1/auth/register?username=' + email + '&password=' + password)
       .then(function (response) {
         console.log(response);
       })
