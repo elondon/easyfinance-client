@@ -1,4 +1,5 @@
 import React, {PropTypes, Component} from 'react';
+import {connect} from 'react-redux';
 
 //todo why import this way?
 var HighlightButton = require('pui-react-buttons').HighlightButton;
@@ -22,4 +23,12 @@ class Header extends Component {
   }
 }
 
-export default Header;
+function mapStateToProps(state) {
+  return {
+    user: state.session.user
+  }
+}
+
+export default connect(
+  mapStateToProps
+)(Header);

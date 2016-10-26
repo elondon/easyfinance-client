@@ -1,3 +1,4 @@
+import React, {Component, PropTypes} from 'react';
 import Header from './Header.react';
 import ModelSpace from './ModelSpace.react';
 import SideBar from './SideBar.react';
@@ -25,3 +26,5 @@ function mapStateToProps(state) {
     // what here?
   }
 }
+
+export default Home;

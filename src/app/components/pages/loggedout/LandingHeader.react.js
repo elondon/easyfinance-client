@@ -1,6 +1,5 @@
 import React, {PropTypes, Component} from 'react';
-import { registerUser } from '../../../actions/session/SessionActions.react'
-import { changeRegisterForm } from '../../../actions/session/SessionActions.react'
+import {changeRegisterForm, changeLoginForm, loginUser, registerUser} from '../../../actions/session/SessionActions.react'
 import {connect} from 'react-redux';
 
 const assign = Object.assign || require('object.assign');
@@ -24,40 +23,41 @@ class LandingHeader extends Component {
           type="text"
           placeholder="Email"
           autoFocus="true"
-          value={this.props.data.email}
+          value={this.props.data.loginForm.email}
+          onChange={this._onLoginEmailChanged.bind(this)}
           />
         <input
           type="text"
           placeholder="Password"
-          onKeyDown={this._onLogin}
-          value={this.props.data.password}
+          value={this.props.data.loginForm.password}
+          onChange={this._onLoginPasswordChanged.bind(this)}
           />
         <HighlightButton onClick={this._onLogin.bind(this)}>Login</HighlightButton>
         <HighlightButton onClick={this._onOpenRegister.bind(this)}>Register</HighlightButton>
         <BaseModal title='Register'
                    className='optional-custom-class'
-                   show={this.props.data.registerModalOpen}
+                   show={this.props.data.registerForm.registerModalOpen}
                    onHide={this._onCloseRegister.bind(this)}>
           <ModalBody>
             <p>
               <input
                 type="text"
                 placeholder="First Name"
-                value={this.props.data.first_name}
+                value={this.props.data.registerForm.first_name}
                 />
             </p>
             <p>
               <input
                 type="text"
                 placeholder="Last Name"
-                value={this.props.data.last_name}
+                value={this.props.data.registerForm.last_name}
               />
             </p>
             <p>
               <input
                 type="text"
                 placeholder="E-mail Address"
-                value={this.props.data.email}
+                value={this.props.data.registerForm.email}
                 onChange={this._onEmailChange.bind(this)}
               />
             </p>
@@ -65,7 +65,7 @@ class LandingHeader extends Component {
               <input
                 type="text"
                 placeholder="Password"
-                value={this.props.data.password}
+                value={this.props.data.registerForm.password}
                 onChange={this._onPasswordChange.bind(this)}
               />
             </p>
@@ -83,27 +83,56 @@ class LandingHeader extends Component {
     );
   }
 
-  _onOpenRegister() {
-    console.log(this);
+  _mergeWithCurrentState(change) {
+    return assign(this.props.data.loginForm, change);
+  }
+
+  //////////////////////////////////////
+  // Login
+  //////////////////////////////////////
+  _onLogin() {
+    console.log(this.props);
+    this.props.dispatch(loginUser(this.props.data.loginForm.email, this.props.data.loginForm.password));
+  }
+
+  _onLoginEmailChanged(event) {
     var newState = this._mergeWithCurrentState({
-      registerModalOpen: true
+        email: event.target.value
+    });
+    this._emitLoginFormChange(newState);
+  }
+
+  _onLoginPasswordChanged(event) {
+    var newState = this._mergeWithCurrentState({
+        password: event.target.value
+    });
+    this._emitLoginFormChange(newState);
+  }
+
+  _emitLoginFormChange(newState) {
+    console.log(newState);
+    this.props.dispatch(changeLoginForm(newState));
+  }
+
+  //////////////////////////////////////
+  // Registration
+  //////////////////////////////////////
+  _onRegister() {
+    this.props.dispatch(registerUser(this.props.data.email, this.props.data.password))
+  }
+
+  _onOpenRegister() {
+    var newState = this._mergeWithCurrentState({
+        registerModalOpen: true
     });
     this._emitChange(newState);
   }
 
   _onCloseRegister() {
     var newState = this._mergeWithCurrentState({
-      registerModalOpen: false
+        registerModalOpen: false
     });
     this._emitChange(newState);
-  }
-
-  _onLogin() {
-
-  }
-
-  _onRegister() {
-    this.props.dispatch(registerUser(this.props.data.email, this.props.data.password))
   }
 
   _onEmailChange(event) {
@@ -120,10 +149,6 @@ class LandingHeader extends Component {
     this._emitChange(newState);
   }
 
-  _mergeWithCurrentState(change) {
-    return assign(this.props.data, change);
-  }
-
   _emitChange(newState) {
     this.props.dispatch(changeRegisterForm(newState));
   }
@@ -137,9 +162,15 @@ LandingHeader.propTypes = {
 function mapStateToProps(state) {
   return {
     data: {
-      email: state.session.registerFormState.email,
-      password: state.session.registerFormState.password,
-      registerModalOpen: state.session.registerFormState.registerModalOpen
+      loginForm: {
+        email: state.session.loginForm.email,
+        password: state.session.loginForm.password,
+      },
+      registerForm: {
+        email: state.session.registerForm.email,
+        password: state.session.registerForm.password,
+        registerModalOpen: state.session.registerForm.registerModalOpen
+      }
     }
   };
 }
