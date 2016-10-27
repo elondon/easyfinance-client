@@ -18,6 +18,7 @@ class Header extends Component {
     return (
       <header className="header">
         <h1>{this.props.user.username} is logged in.</h1>
+        
       </header>
     )
   }
@@ -25,7 +26,8 @@ class Header extends Component {
 
 function mapStateToProps(state) {
   return {
-    user: state.session.user
+    user: state.session.user,
+    entities: state.entity.entities
   }
 }
 
