@@ -15,10 +15,17 @@ class Header extends Component {
   }
 
   render() {
+    console.log(this.props.entities);
+    var entityItems = this.props.entities.map(function(entity) {
+      return <DefaultButton>{entity.name}</DefaultButton>
+    });
+
     return (
       <header className="header">
-        <h1>{this.props.user.username} is logged in.</h1>
-        
+        <h3>{this.props.user.username} is logged in.</h3>
+        <p>
+            <div>{entityItems}</div>
+        </p>
       </header>
     )
   }

@@ -2,8 +2,28 @@ import { REGISTER_SUCCESS, REGISTER_FAIL, CHANGE_REGISTER_FORM, LOGIN_SUCCESS, L
 
 const assign = Object.assign || require('object.assign');
 
-const initialState = {
+/*const initialState = {
     user: null,
+    registerForm: {
+      email: '',
+      password: '',
+      registerModalOpen: false
+    },
+    loginForm: {
+      email: '',
+      password: ''
+    }
+}*/
+
+// for testing only.
+const initialState = {
+    user: {
+      id: 85,
+      username: 'test@testy.com',
+      first_name: 'test',
+      last_name: 'mcTesterson',
+      email: 'test@testy.com'
+    },
     registerForm: {
       email: '',
       password: '',

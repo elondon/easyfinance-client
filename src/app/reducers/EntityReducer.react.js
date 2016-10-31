@@ -3,17 +3,17 @@ import {USER_ENTITIES_RECEIVED, USER_ENTITIES_FAILED} from '../constants/ActionT
 const assign = Object.assign || require('object.assign');
 
 const initialState = {
-  entities : null
+  entities : []
 }
 
-export default function entityReducer(state = initialState, action) {
+export default function entitiesReducer(state = initialState, action) {
   switch(action.type) {
-    case: USER_ENTITIES_RECEIVED:
+    case USER_ENTITIES_RECEIVED:
       return assign({}, state, {
         entities: action.entities
       });
       break;
-    case: USER_ENTITIES_FAILED:
+    case USER_ENTITIES_FAILED:
       //todo handle this. who cares for now.
       return state;
       break;

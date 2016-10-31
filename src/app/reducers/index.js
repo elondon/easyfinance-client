@@ -1,10 +1,10 @@
 import {combineReducers} from 'redux';
-import todos from './todos';
 import session from './SessionReducer.react'
+import entity from './EntityReducer.react'
 
 const rootReducer = combineReducers({
-  todos,
-  session
+  session,
+  entity
 });
 
 export default rootReducer;

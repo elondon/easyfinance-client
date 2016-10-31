@@ -1,5 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 
+var DefaultButton = require('pui-react-buttons').DefaultButton;
+
 class SideBar extends Component {
   constructor() {
     super();
@@ -7,8 +9,10 @@ class SideBar extends Component {
 
   render() {
     return (
-      <div>
-
+      <div className="side-bar">
+        <p>
+          <DefaultButton>Income Statement</DefaultButton>
+        </p>
       </div>
     );
   }

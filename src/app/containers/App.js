@@ -10,7 +10,8 @@ class App extends Component {
   }
 
   render() {
-      if(this.props.user) {
+        if(true) { // for testing purposes only.
+    //  if(this.props.user) {
         return (
           <div>
             <Home/>

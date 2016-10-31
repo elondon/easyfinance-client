@@ -1,5 +1,5 @@
 import React, {PropTypes, Component} from 'react';
-import {changeRegisterForm, changeLoginForm, loginUser, registerUser} from '../../../actions/session/SessionActions.react'
+import {changeRegisterForm, changeLoginForm, loginUser, registerUser} from '../../../actions/SessionActions.react'
 import {connect} from 'react-redux';
 
 const assign = Object.assign || require('object.assign');
