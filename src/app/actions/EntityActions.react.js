@@ -1,4 +1,4 @@
-import {USER_ENTITIES_RECEIVED, USER_ENTITIES_FAILED} from '../constants/ActionTypes'
+import {USER_ENTITIES_RECEIVED, USER_ENTITIES_FAILED, ACTIVE_ENTITY_CHANGED} from '../constants/ActionTypes'
 import axios from 'axios';
 
 // get user entities
@@ -27,6 +27,14 @@ export function userEntitiesFailed(json) {
   return {
     type: USER_ENTITIES_FAILED,
     entities: null,
+    receivedAt: Date.now()
+  }
+}
+
+export function changeActiveEntity(entity) {
+  return {
+    type: ACTIVE_ENTITY_CHANGED,
+    activeEntity: entity,
     receivedAt: Date.now()
   }
 }

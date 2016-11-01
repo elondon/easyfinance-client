@@ -17,7 +17,7 @@ class Home extends Component {
 
   render() {
       return (
-        <div>
+        <div class="content">
           <Header/>
           <SideBar/>
           <ModelSpace/>
