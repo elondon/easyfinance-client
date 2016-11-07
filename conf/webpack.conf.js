@@ -47,8 +47,8 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin()
   ],
   postcss: () => [autoprefixer],
+  devtool: 'source-map',
   debug: true,
-  devtool: 'cheap-module-eval-source-map',
   output: {
     path: path.join(process.cwd(), conf.paths.tmp),
     filename: 'index.js'

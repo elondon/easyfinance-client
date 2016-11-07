@@ -4,13 +4,6 @@ import {connect} from 'react-redux';
 
 const assign = Object.assign || require('object.assign');
 
-//todo why import this way?
-var HighlightButton = require('pui-react-buttons').HighlightButton;
-var BaseModal = require('pui-react-modals').BaseModal;
-var ModalBody = require('pui-react-modals').ModalBody;
-var ModalFooter = require('pui-react-modals').ModalFooter;
-var DefaultButton = require('pui-react-buttons').DefaultButton;
-
 class LandingHeader extends Component {
   constructor(props) {
     super(props);

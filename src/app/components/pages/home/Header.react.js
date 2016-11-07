@@ -1,12 +1,6 @@
 import React, {PropTypes, Component} from 'react';
 import {connect} from 'react-redux';
-
-//todo why import this way?
-var HighlightButton = require('pui-react-buttons').HighlightButton;
-var BaseModal = require('pui-react-modals').BaseModal;
-var ModalBody = require('pui-react-modals').ModalBody;
-var ModalFooter = require('pui-react-modals').ModalFooter;
-var DefaultButton = require('pui-react-buttons').DefaultButton;
+import FlatButton from 'material-ui/FlatButton';
 
 class Header extends Component {
   constructor(props) {
@@ -15,17 +9,20 @@ class Header extends Component {
   }
 
   render() {
-    console.log(this.props.entities);
     var entityItems = this.props.entities.map(function(entity) {
-      return <DefaultButton>{entity.name}</DefaultButton>
+      return (
+        <div key={entity.id}>
+          <FlatButton label={entity.name} primary={true}></FlatButton>
+        </div>
+      )
     });
 
     return (
       <header className="header">
         <h3>{this.props.user.username} is logged in.</h3>
-        <p>
+        <div>
             <div>{entityItems}</div>
-        </p>
+        </div>
       </header>
     )
   }

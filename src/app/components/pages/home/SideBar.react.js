@@ -1,6 +1,5 @@
 import React, {Component, PropTypes} from 'react';
-
-var DefaultButton = require('pui-react-buttons').DefaultButton;
+import FlatButton from 'material-ui/FlatButton';
 
 class SideBar extends Component {
   constructor() {
@@ -11,7 +10,7 @@ class SideBar extends Component {
     return (
       <div className="side-bar">
         <p>
-          <DefaultButton>Income Statement</DefaultButton>
+          <FlatButton label="INCOME STATEMENT" primary={true}></FlatButton>
         </p>
       </div>
     );

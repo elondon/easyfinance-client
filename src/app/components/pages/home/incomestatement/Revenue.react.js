@@ -1,5 +1,8 @@
 import React, {PropTypes, Component} from 'react';
 import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import * as EntityActions from '../../../../actions/EntityActions.react';
+import Clear from 'material-ui/svg-icons/content/clear';
 
 class Revenue extends Component {
     constructor(props) {
@@ -7,19 +10,33 @@ class Revenue extends Component {
     }
 
     _handleCreateRevenue() {
-      console.log('click!!');
+      this.props.actions.createRevenueItem( {
+        entity_id: this.props.active_entity.id,
+        unit_name: 'New Widget',
+        unit_description: '',
+        unit_cost: 0.0,
+        unit_count: 0
+      })
+    }
+
+    _handleDeleteRevenue(revenue_id) {
+      console.log(revenue_id);
+      /*this.props.actions.deleteRevenueItem( {
+        revenue_id: revenue_id
+      })*/
     }
 
     render() {
-      var revenueItems = this.props.activeEntity.revenue.map(function(revenue) {
+      var revenueItems = this.props.active_entity.revenue.map(function(revenue) {
         return (
-          <div className="revenue-summary-box">
+          <div key={revenue.id} className="revenue-summary-box">
+              <div className="revenue-item-clear" onClick={this._handleDeleteRevenue.bind(this, revenue.id)}><Clear/></div>
               <h4>Widget Units: {revenue.unit_count}</h4>
               <h4>Widget Price Per Unit: {revenue.unit_cost}</h4>
               <h4>Total Widget Revenue: {revenue.unit_count * revenue.unit_cost}</h4>
           </div>
         )
-      });
+      }, this);
       return (
         <div className="revenue">
           <div className="revenue-summary">
@@ -36,11 +53,18 @@ class Revenue extends Component {
 
 function mapStateToProps(state) {
   return {
-    activeEntity: state.entity.activeEntity
+    active_entity: state.entity.entities[state.entity.active_entity_index]
   }
 }
 
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(EntityActions, dispatch)
+  };
+}
+
 export default connect(
-  mapStateToProps
+  mapStateToProps,
+  mapDispatchToProps
 )
 (Revenue);

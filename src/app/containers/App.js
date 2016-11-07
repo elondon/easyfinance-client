@@ -4,26 +4,28 @@ import {connect} from 'react-redux';
 import Landing from '../components/pages/loggedout/Landing.react';
 import Home from '../components/pages/home/Home.react';
 
+
 class App extends Component {
   constructor() {
     super();
   }
 
   render() {
-        if(true) { // for testing purposes only.
-    //  if(this.props.user) {
-        return (
+
+    if(true) { // for testing purposes only.
+  //  if(this.props.user) {
+      return (
           <div>
             <Home/>
           </div>
-        );
-      } else {
-        return (
+      );
+    } else {
+      return (
           <div>
             <Landing/>
           </div>
-        );
-      }
+      );
+    }
   }
 }
 

@@ -10,12 +10,12 @@ import configureStore from './app/store/configureStore';
 import {Router, Route, browserHistory} from 'react-router';
 import rootReducer from './app/reducers';
 import axios from 'axios';
-
+import injectTapEventPlugin from 'react-tap-event-plugin';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import './index.scss';
 
 const loggerMiddleware = createLogger()
-
-axios.defaults.baseURL = 'http://localhost:5000/easyfinance/api/v1';
+injectTapEventPlugin();
 
 const store = createStore(
   rootReducer,
@@ -26,10 +26,12 @@ const store = createStore(
 )
 
 render(
-  <Provider store={store}>
-    <Router history={browserHistory}>
-      <Route path="/" component={App}/>
-    </Router>
-  </Provider>,
+  <MuiThemeProvider>
+    <Provider store={store}>
+      <Router history={browserHistory}>
+        <Route path="/" component={App}/>
+      </Router>
+    </Provider>
+  </MuiThemeProvider>,
   document.getElementById('root')
 );
