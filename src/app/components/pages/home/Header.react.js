@@ -1,40 +1,31 @@
 import React, {PropTypes, Component} from 'react';
 import {connect} from 'react-redux';
 import FlatButton from 'material-ui/FlatButton';
+import AppBar from 'material-ui/AppBar';
 
 class Header extends Component {
   constructor(props) {
     super(props);
+    this.onShowSideBarMenu.bind(this);
+  }
 
+  onShowSideBarMenu() {}
+
+  renderLoggedIn() {
+    return (
+      <h3>{this.props.user.username}
+        is logged in.</h3>
+    )
   }
 
   render() {
-    var entityItems = this.props.entities.map(function(entity) {
-      return (
-        <div key={entity.id}>
-          <FlatButton label={entity.name} primary={true}></FlatButton>
-        </div>
-      )
-    });
-
-    return (
-      <header className="header">
-        <h3>{this.props.user.username} is logged in.</h3>
-        <div>
-            <div>{entityItems}</div>
-        </div>
-      </header>
-    )
+    const loggedIn = this.renderLoggedIn();
+    return (<AppBar title="Easy Finance" iconElementRight={loggedIn} onLeftIconButtonTouchTap={() => this.onShowSideBarMenu()}/>)
   }
 }
 
 function mapStateToProps(state) {
-  return {
-    user: state.session.user,
-    entities: state.entity.entities
-  }
+  return {user: state.session.user, entities: state.entity.entities}
 }
 
-export default connect(
-  mapStateToProps
-)(Header);
+export default connect(mapStateToProps)(Header);

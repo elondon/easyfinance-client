@@ -7,6 +7,14 @@ const autoprefixer = require('autoprefixer');
 
 module.exports = {
   module: {
+  /*  preLoaders: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'eslint'
+      }
+    ],*/
+
     loaders: [
       {
         test: /.json$/,
@@ -30,10 +38,6 @@ module.exports = {
           'react-hot',
           'babel'
         ]
-      },
-      {
-        test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9=&.]+)?$/,
-        loader: 'file-loader'
       }
     ]
   },
@@ -41,14 +45,23 @@ module.exports = {
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.NoErrorsPlugin(),
     new HtmlWebpackPlugin({
-      template: conf.path.src('index.html'),
-      inject: true
+      template: conf.path.src('index.html')
     }),
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.DefinePlugin({
+        'process.env.NODE_ENV': '"development"',
+        'process.env.API_URL': JSON.stringify('http://localhost:9003/api/v1')
+    }),
+    new webpack.LoaderOptionsPlugin({
+      options: {
+        postcss: () => [autoprefixer]
+      },
+      eslint: {
+        configFile: './.eslintrc.json'
+      }
+    })
   ],
-  postcss: () => [autoprefixer],
   devtool: 'source-map',
-  debug: true,
   output: {
     path: path.join(process.cwd(), conf.paths.tmp),
     filename: 'index.js'
@@ -57,8 +70,5 @@ module.exports = {
     'webpack/hot/dev-server',
     'webpack-hot-middleware/client',
     `./${conf.path.src('index')}`
-  ],
-  externals: {
-    'Config': JSON.stringify(process.env.ENV === 'production' ? require('./config.prod.json') : require('./config.dev.json'))
-  }
+  ]
 };

@@ -9,31 +9,30 @@ class Revenue extends Component {
         super(props);
     }
 
-    _handleCreateRevenue() {
+    onCreateRevenue() {
       this.props.actions.createRevenueItem( {
-        entity_id: this.props.active_entity.id,
-        unit_name: 'New Widget',
-        unit_description: '',
-        unit_cost: 0.0,
-        unit_count: 0
+        entityId: this.props.activeEntity.id,
+        unitName: 'New Widget',
+        unitDescription: '',
+        unitCost: 0.0,
+        unitCount: 0
       })
     }
 
-    _handleDeleteRevenue(revenue_id) {
-      console.log(revenue_id);
-      /*this.props.actions.deleteRevenueItem( {
-        revenue_id: revenue_id
-      })*/
+    onDeleteRevenue(revenueId) {
+      this.props.actions.deleteRevenueItem( {
+        revenueId: revenueId
+      })
     }
 
     render() {
-      var revenueItems = this.props.active_entity.revenue.map(function(revenue) {
+      var revenueItems = this.props.activeEntity.revenue.map(function(revenue) {
         return (
           <div key={revenue.id} className="revenue-summary-box">
-              <div className="revenue-item-clear" onClick={this._handleDeleteRevenue.bind(this, revenue.id)}><Clear/></div>
-              <h4>Widget Units: {revenue.unit_count}</h4>
-              <h4>Widget Price Per Unit: {revenue.unit_cost}</h4>
-              <h4>Total Widget Revenue: {revenue.unit_count * revenue.unit_cost}</h4>
+              <div className="revenue-item-clear" onClick={this.onDeleteRevenue.bind(this, revenue.id)}><Clear/></div>
+              <h4>Widget Units: {revenue.unitCount}</h4>
+              <h4>Widget Price Per Unit: {revenue.unitCost}</h4>
+              <h4>Total Widget Revenue: {revenue.unitCount * revenue.unitCost}</h4>
           </div>
         )
       }, this);
@@ -43,7 +42,7 @@ class Revenue extends Component {
             <h3>Revenue Summary</h3>
           </div>
           {revenueItems}
-          <div onClick={this._handleCreateRevenue.bind(this)} className="add-new-item">
+          <div onClick={this.onCreateRevenue.bind(this)} className="add-new-item">
             <h4>+ Add New Revenue Item</h4>
           </div>
         </div>
@@ -53,7 +52,7 @@ class Revenue extends Component {
 
 function mapStateToProps(state) {
   return {
-    active_entity: state.entity.entities[state.entity.active_entity_index]
+    activeEntity: state.entity.entities[state.entity.activeEntityIndex]
   }
 }
 

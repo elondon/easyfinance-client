@@ -1,4 +1,11 @@
-import { REGISTER_SUCCESS, REGISTER_FAIL, CHANGE_REGISTER_FORM, LOGIN_SUCCESS, LOGIN_FAIL, CHANGE_LOGIN_FORM } from '../constants/ActionTypes'
+import {
+  REGISTER_SUCCESS,
+  REGISTER_FAIL,
+  CHANGE_REGISTER_FORM,
+  LOGIN_SUCCESS,
+  LOGIN_FAIL,
+  CHANGE_LOGIN_FORM
+} from '../constants/ActionTypes'
 
 const assign = Object.assign || require('object.assign');
 
@@ -17,45 +24,39 @@ const assign = Object.assign || require('object.assign');
 
 // for testing only.
 const initialState = {
-    user: {
-      id: 85,
-      username: 'test@testy.com',
-      first_name: 'test',
-      last_name: 'mcTesterson',
-      email: 'test@testy.com'
-    },
-    registerForm: {
-      email: '',
-      password: '',
-      registerModalOpen: false
-    },
-    loginForm: {
-      email: '',
-      password: ''
-    }
+  user: {
+    id: 85,
+    username: 'test@testy.com',
+    firstName: 'test',
+    lastName: 'mcTesterson',
+    email: 'test@testy.com'
+  },
+  registerForm: {
+    email: '',
+    password: '',
+    registerModalOpen: false
+  },
+  loginForm: {
+    email: '',
+    password: ''
+  }
 }
 
 export default function sessionReducer(state = initialState, action) {
-  switch(action.type) {
+  switch (action.type) {
     case CHANGE_REGISTER_FORM:
-      return assign({}, state, {
-        registerForm: action.newState
-      });
+      return assign({}, state, {registerForm: action.newState});
       break;
     case REGISTER_SUCCESS:
       break;
     case REGISTER_FAIL:
       break;
     case LOGIN_SUCCESS:
-      return assign({}, state, {
-        user: action.user
-      });
+      return assign({}, state, {user: action.user});
     case LOGIN_FAIL:
       break;
     case CHANGE_LOGIN_FORM:
-      return assign({}, state, {
-        loginForm: action.newState
-      });
+      return assign({}, state, {loginForm: action.newState});
       break;
     default:
       return state;
