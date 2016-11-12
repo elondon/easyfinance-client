@@ -1,4 +1,4 @@
-import {USER_ENTITIES_RECEIVED, USER_ENTITIES_FAILED, ACTIVE_ENTITY_CHANGED, REVENUE_ITEM_CREATED, REVENUE_ITEM_FAILED_CREATION} from '../constants/ActionTypes'
+import {USER_ENTITIES_RECEIVED, USER_ENTITIES_FAILED, ACTIVE_ENTITY_CHANGED, REVENUE_ITEM_CREATED, REVENUE_ITEM_FAILED_CREATION, REVENUE_ITEM_DELETED, REVENUE_ITEM_FAILED_DELETE} from '../constants/ActionTypes'
 var _ = require('lodash');
 
 const assign = Object.assign || require('object.assign');
@@ -37,6 +37,18 @@ export default function entitiesReducer(state = initialState, action) {
       return assign({}, state, {entities: newEntities});
       break;
     case REVENUE_ITEM_FAILED_CREATION:
+      return state;
+      break;
+    case REVENUE_ITEM_DELETED:
+      //todo this probably causes a state change for the entire entity graph. Can we change just revenue?
+      var newEntities = _.cloneDeep(state.entities);
+      var entity = _.find(newEntities, {'id': action.entityId});
+      _.remove(entity.revenue, {
+          id: action.revenueId
+      });
+      return assign({}, state, {entities: newEntities});
+      break;
+    case REVENUE_ITEM_FAILED_DELETE:
       return state;
       break;
     default:

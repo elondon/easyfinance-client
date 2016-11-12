@@ -49,15 +49,47 @@ tml, body {
     float: left;
 }
 
-.financial-summary-box {
+.revenue-summary-box {
     background: mediumseagreen;
     color: white;
     border-radius: 5px;
     padding: 5px;
 }
 
-.income-statement-financials .financial-summary-box h5 {
+.income-statement-financials .financial-revenue-box h5 {
     text-align: center;
+}
+
+.income-statement-financials .costs-summary-box {
+	background: #cd7272;
+	color: white;
+	border-radius: 5px;
+	padding: 5px;
+	margin-bottom: 5px;
+}
+
+.income-statement-financials .gross-profit-box {
+	background: #4364db;
+	color: white;
+	border-radius: 5px;
+	padding: 5px;
+	margin-bottom: 5px;
+}
+
+.income-statement-financials .operating-expenses-box {
+	background: #cd7272;
+	color: white;
+	border-radius: 5px;
+	padding: 5px;
+	margin-bottom: 5px;
+}
+
+.income-statement-financials .ebitda-box {
+	background: #4364db;
+	color: white;
+	border-radius: 5px;
+	padding: 5px;
+	margin-bottom: 5px;
 }
 
 ////////////////////////////////////////////
@@ -92,6 +124,7 @@ tml, body {
     color: white;
     border-radius: 5px;
     padding: 5px;
+		margin-bottom: 5px;
 }
 
 .revenue .add-new-item {

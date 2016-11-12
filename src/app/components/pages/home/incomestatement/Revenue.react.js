@@ -20,12 +20,10 @@ class Revenue extends Component {
     }
 
     onDeleteRevenue(revenueId) {
-      this.props.actions.deleteRevenueItem( {
-        revenueId: revenueId
-      })
+      this.props.actions.deleteRevenueItem(this.props.activeEntity.id, revenueId)
     }
 
-    render() {
+    renderRevenueItems() {
       var revenueItems = this.props.activeEntity.revenue.map(function(revenue) {
         return (
           <div key={revenue.id} className="revenue-summary-box">
@@ -36,6 +34,12 @@ class Revenue extends Component {
           </div>
         )
       }, this);
+
+      return revenueItems;
+    }
+
+    render() {
+      const revenueItems = this.renderRevenueItems()
       return (
         <div className="revenue">
           <div className="revenue-summary">
