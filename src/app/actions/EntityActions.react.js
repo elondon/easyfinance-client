@@ -1,4 +1,4 @@
-import {USER_ENTITIES_RECEIVED, USER_ENTITIES_FAILED, ACTIVE_ENTITY_CHANGED, REVENUE_ITEM_CREATED, REVENUE_ITEM_FAILED_CREATION, REVENUE_ITEM_DELETED, REVENUE_ITEM_FAILED_DELETE} from '../constants/ActionTypes'
+import {USER_ENTITIES_RECEIVED, USER_ENTITIES_FAILED, ACTIVE_ENTITY_CHANGED, REVENUE_ITEM_CREATED, REVENUE_ITEM_FAILED_CREATION, REVENUE_ITEM_DELETED, REVENUE_ITEM_FAILED_DELETE, INCOME_STATEMENT_RECEIVED, INCOME_STATEMENT_FAILED} from '../constants/ActionTypes'
 import axios from 'axios';
 
 ///////////////////////////////////////
@@ -8,6 +8,7 @@ export function getUserEntities(userId) {
   return dispatch => {
     axios.get('http://localhost:5000/easyfinance/api/v1/user/' + userId + '/entities').then(function(response) {
       dispatch(userEntitiesReceived(response.data));
+      dispatch(getIncomeStatement(response.data.entities[0].id)); //todo this obviously shouldnt be here either.
     }).catch(function(error) {
       console.log(error);
       dispatch(userEntitiesFailed(error));
@@ -77,13 +78,20 @@ export function revenueItemDeleteFailed(json) {
 // Income Statement Actions
 ///////////////////////////////////////
 export function getIncomeStatement(entityId) {
-
+  return dispatch => {
+    axios.get('http://localhost:5000/easyfinance/api/v1/entity/' + entityId + '/incomestatement').then(function(response) {
+      dispatch(incomeStatementReceived(response.data));
+    }).catch(function(error) {
+      console.log(error);
+      dispatch(incomeStatementFailed(error));
+    });
+  }
 }
 
 export function incomeStatementReceived(json) {
-
+  return {type: INCOME_STATEMENT_RECEIVED, incomeStatement: json.incomeStatement, receivedAt: Date.now()}
 }
 
 export function incomeStatementFailed(json) {
-
+  return {type: INCOME_STATEMENT_FAILED, incomeStatement: null, receivedAt: Date.now()}
 }

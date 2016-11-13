@@ -1,0 +1,7 @@
+- inject config for dev / prod
+- deployment scripts
+- deployment infrastructure
+- break out financial models into their own actions / reducers
+- handle all fail cases
+- find more efficient way of dealing with state changes from server
+- more elegant reducers?

@@ -14,6 +14,10 @@ export function changeRegisterForm(newState) {
   return {type: CHANGE_REGISTER_FORM, newState};
 }
 
+export function changeLoginForm(newState) {
+  return {type: CHANGE_LOGIN_FORM, newState};
+}
+
 export function userRegistered(json) {
   return {
     type: USER_REGISTERED,
@@ -42,10 +46,6 @@ export function loginUser(email, password) {
       console.log(error);
     });
   }
-}
-
-export function changeLoginForm(newState) {
-  return {type: CHANGE_LOGIN_FORM, newState};
 }
 
 export function userLoggedIn(json) {

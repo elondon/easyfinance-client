@@ -1,4 +1,4 @@
-import {USER_ENTITIES_RECEIVED, USER_ENTITIES_FAILED, ACTIVE_ENTITY_CHANGED, REVENUE_ITEM_CREATED, REVENUE_ITEM_FAILED_CREATION, REVENUE_ITEM_DELETED, REVENUE_ITEM_FAILED_DELETE} from '../constants/ActionTypes'
+import {USER_ENTITIES_RECEIVED, USER_ENTITIES_FAILED, ACTIVE_ENTITY_CHANGED, REVENUE_ITEM_CREATED, REVENUE_ITEM_FAILED_CREATION, REVENUE_ITEM_DELETED, REVENUE_ITEM_FAILED_DELETE, INCOME_STATEMENT_RECEIVED, INCOME_STATEMENT_FAILED} from '../constants/ActionTypes'
 var _ = require('lodash');
 
 const assign = Object.assign || require('object.assign');
@@ -12,7 +12,11 @@ const initialState = {
       operatingExpenses: []
     }
   ],
-  activeEntityIndex: 0
+  selectedIncomeStatement: {},
+  activeEntityIndex: 0,
+  showingEditRevenue: false,
+  showingEditCosts: false,
+  showEditOpex: false
 }
 
 export default function entitiesReducer(state = initialState, action) {
@@ -51,6 +55,10 @@ export default function entitiesReducer(state = initialState, action) {
     case REVENUE_ITEM_FAILED_DELETE:
       return state;
       break;
+    case INCOME_STATEMENT_RECEIVED:
+      return assign({}, state, {selectedIncomeStatement: action.incomeStatement});
+    case INCOME_STATEMENT_FAILED:
+      return state;
     default:
       return state;
   }
