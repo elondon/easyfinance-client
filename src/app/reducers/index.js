@@ -4,6 +4,7 @@ import entity from './EntityReducer.react';
 import revenue from './RevenueReducer.react';
 import navigation from './NavigationReducer.react';
 import incomeStatement from './IncomeStatementReducer.react';
+import opex from './opexReducer.react';
 import cost from './costReducer.react';
 import { combineForms } from 'react-redux-form';
 
@@ -26,15 +27,25 @@ const initialCostState = {
   value: 0
 }
 
+const initialOpexState = {
+  id: -1,
+  entityId: -1,
+  name: '',
+  description: '',
+  value: 0
+}
+
 const forms = combineForms({
   revenueForm: initialRevenueState,
-  costForm: initialCostState
+  costForm: initialCostState,
+  opexForm: initialOpexState
 });
 const rootReducer = combineReducers({
   session,
   entity,
   revenue,
   cost,
+  opex,
   navigation,
   incomeStatement,
   forms

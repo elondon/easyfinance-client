@@ -1,7 +1,7 @@
 import React, {PropTypes, Component} from 'react';
 import { Control, Form, actions } from 'react-redux-form';
 
-class CostForm extends React.Component {
+class CostForm extends Component {
   render() {
     return (
       <Form model="costForm">

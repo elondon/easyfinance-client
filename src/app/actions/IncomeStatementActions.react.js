@@ -8,6 +8,6 @@ export function showCosts() {
   return {type: SHOW_INCOME_STATEMENT_COSTS, receivedAt: Date.now()}
 }
 
-export function showOpex() {
+export function showOpEx() {
   return {type: SHOW_INCOMESTATEMENT_OPEX, receivedAt: Date.now()}
 }
