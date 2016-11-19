@@ -40,6 +40,14 @@ export function deleteRevenueItem(entityId, revenueId) {
   }
 }
 
+export function revenueItemDeleted(json) {
+  return {type: REVENUE_ITEM_DELETED, revenueId: json.revenueId, entityId: json.entityId, receivedAt: Date.now()}
+}
+
+export function revenueItemDeleteFailed(json) {
+
+}
+
 export function decorateRevenueForm(revenue) {
   return dispatch => {
     dispatch(actions.change('revenueForm.id', revenue.id));
@@ -69,14 +77,6 @@ export function revenueItemChanged(revenue) {
 
 export function revenueItemChangeFailed(revenue) {
   return {type: REVENUE_ITEM_CHANGE_FAILED, revenue: null, receivedAt: Date.now()}
-}
-
-export function revenueItemDeleted(json) {
-  return {type: REVENUE_ITEM_DELETED, revenueId: json.revenueId, entityId: json.entityId, receivedAt: Date.now()}
-}
-
-export function revenueItemDeleteFailed(json) {
-
 }
 
 export function editRevenueItem(revenueId) {
