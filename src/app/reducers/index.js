@@ -8,20 +8,23 @@ import { combineForms } from 'react-redux-form';
 // react-redux-forms
 // todo there is definitely a better place for this.
 const initialRevenueState = {
-  widgetName: '',
-  widgetCost: 0,
-  widgetCount: 0
+  id: -1,
+  entityId: -1,
+  unitName: '',
+  unitDescription: '',
+  unitCost: 0,
+  unitCount: 0
 }
 
-const formsReducers = combineForms({
-  revenue: initialRevenueState,
+const forms = combineForms({
+  revenueForm: initialRevenueState,
 });
 const rootReducer = combineReducers({
   session,
   entity,
   revenue,
   navigation,
-  formsReducers
+  forms
 });
 
 export default rootReducer;

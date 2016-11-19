@@ -1,4 +1,4 @@
-import {REVENUE_ITEM_CREATED, SELECTED_ENTITY_CHANGED, REVENUE_ITEM_FAILED_CREATION, REVENUE_ITEM_DELETED, REVENUE_ITEM_FAILED_DELETE, EDIT_REVENUE_ITEM, FINISH_EDITING_REVENUE_ITEM} from '../constants/ActionTypes.react';
+import {REVENUE_ITEM_CHANGED, REVENUE_ITEM_CHANGE_FAILED,REVENUE_ITEM_CREATED, SELECTED_ENTITY_CHANGED, REVENUE_ITEM_FAILED_CREATION, REVENUE_ITEM_DELETED, REVENUE_ITEM_FAILED_DELETE, EDIT_REVENUE_ITEM, FINISH_EDITING_REVENUE_ITEM} from '../constants/ActionTypes.react';
 
 var _ = require('lodash');
 
@@ -44,8 +44,21 @@ export default function revenueReducer(state = initialState, action) {
       return state;
       break;
     case EDIT_REVENUE_ITEM:
-      return state;
+      return assign({}, state, {editingRevenue: true});
     case FINISH_EDITING_REVENUE_ITEM:
+      return assign({}, state, {editingRevenue: false});
+    case REVENUE_ITEM_CHANGED:
+      if(action.revenue.entityId !== state.revenueParentEntityId) {
+        return state;
+      }
+      mutatedRevenue = _.cloneDeep(state.revenue);
+      let revenueItem = _.find(mutatedRevenue, {'id': parseInt(action.revenue.id)});
+      revenueItem.unitName = action.revenue.unitName;
+      revenueItem.unitDescription = action.revenue.unitDescription;
+      revenueItem.unitCost = action.revenue.unitCost;
+      revenueItem.unitCount = action.revenue.unitCount;
+      return assign({}, state, {revenue: mutatedRevenue});
+    case REVENUE_ITEM_CHANGE_FAILED:
       return state;
     default:
       return state;

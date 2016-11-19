@@ -1,4 +1,5 @@
-import {REVENUE_ITEM_CREATED, REVENUE_ITEM_FAILED_CREATION, REVENUE_ITEM_DELETED, REVENUE_ITEM_FAILED_DELETE} from '../constants/ActionTypes.react';
+import {REVENUE_ITEM_CHANGED, REVENUE_ITEM_CHANGE_FAILED, REVENUE_ITEM_CREATED, REVENUE_ITEM_FAILED_CREATION, REVENUE_ITEM_DELETED, REVENUE_ITEM_FAILED_DELETE, EDIT_REVENUE_ITEM, FINISH_EDITING_REVENUE_ITEM} from '../constants/ActionTypes.react';
+import { actions } from 'react-redux-form';
 import axios from 'axios';
 
 export function createRevenueItem(revenue) {
@@ -34,6 +35,36 @@ export function deleteRevenueItem(entityId, revenueId) {
       dispatch(revenueItemDeleteFailed(error));
     });
   }
+}
+
+export function decorateRevenueForm(revenue) {
+  return dispatch => {
+    dispatch(actions.change('revenueForm.id', revenue.id));
+    dispatch(actions.change('revenueForm.entityId', revenue.entityId));
+  }
+}
+
+export function changeRevenueItem(revenueForm) {
+  return dispatch => {
+    axios.put('http://localhost:5000/easyfinance/api/v1/entity/' + revenueForm.entityId + '/revenue/' + revenueForm.id, {
+      unitName: revenueForm.unitName,
+      unitDescription: revenueForm.unitDescription,
+      unitCost: revenueForm.unitCost,
+      unitCount: revenueForm.unitCount
+    }).then(function(response) {
+      dispatch(revenueItemChanged(response.data.revenue));
+    }).then(function(error) {
+      dispatch(revenueItemChangeFailed(error));
+    });
+  }
+}
+
+export function revenueItemChanged(revenue) {
+  return {type: REVENUE_ITEM_CHANGED, revenue: revenue, receivedAt: Date.now()}
+}
+
+export function revenueItemChangeFailed(revenue) {
+  return {type: REVENUE_ITEM_CHANGE_FAILED, revenue: null, receivedAt: Date.now()}
 }
 
 export function revenueItemDeleted(json) {

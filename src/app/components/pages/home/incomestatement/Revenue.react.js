@@ -10,19 +10,12 @@ import {blue50} from 'material-ui/styles/colors';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import EditRevenue from './forms/EditRevenue.react.js';
+import { actions } from 'react-redux-form';
 
 class Revenue extends Component {
   constructor(props) {
     super(props);
-
-    this.onEditRevenue.bind(this);
-    this.handleEditorClose.bind(this);
-    this.setState.bind(this);
   }
-
-  handleEditorClose() {
-
-  };
 
   onCreateRevenue() {
     this.props.actions.createRevenueItem({entityId: this.props.revenueParentEntityId, unitName: 'New Widget', unitDescription: '', unitCost: 0.0, unitCount: 0})
@@ -33,13 +26,24 @@ class Revenue extends Component {
   }
 
   onEditRevenue(revenue) {
-    this.setState({open: true});
+    this.props.actions.decorateRevenueForm(revenue);
+    this.props.actions.editRevenueItem(revenue.id);
+  }
+
+  onFinishedEditingRevenueItem() {
+    this.props.actions.finishEditingRevenueItem();
+  };
+
+  onSaveRevenueItem() {
+    this.props.actions.changeRevenueItem(this.props.revenueForm);
+    this.props.actions.finishEditingRevenueItem();
   }
 
   renderRevenueItems() {
     const actions =
     [
-      <FlatButton label = "Cancel" primary = {true} onTouchTap = {this.handleEditorClose.bind(this)}/>
+      <FlatButton label = "Save" primary = {true} onTouchTap = {this.onSaveRevenueItem.bind(this)}/>,
+      <FlatButton label = "Cancel" primary = {true} onTouchTap = {this.onFinishedEditingRevenueItem.bind(this)}/>
     ];
     var revenueItems = this.props.revenue.map(function(revenue) {
       return (
@@ -90,6 +94,7 @@ function mapStateToProps(state) {
   return {
     revenue: state.revenue.revenue,
     editingRevenue: state.revenue.editingRevenue,
+    revenueForm: state.forms.revenueForm,
     revenueParentEntityId: state.revenue.revenueParentEntityId
   }
 }
