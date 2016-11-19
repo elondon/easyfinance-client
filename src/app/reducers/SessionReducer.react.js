@@ -5,7 +5,7 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   CHANGE_LOGIN_FORM
-} from '../constants/ActionTypes'
+} from '../constants/ActionTypes.react'
 
 const assign = Object.assign || require('object.assign');
 

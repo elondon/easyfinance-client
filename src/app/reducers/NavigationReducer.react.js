@@ -1,4 +1,4 @@
-import {SHOW_SIDE_BAR_MENU} from '../constants/ActionTypes';
+import {SHOW_SIDE_BAR_MENU} from '../constants/ActionTypes.react';
 
 const assign = Object.assign || require('object.assign');
 

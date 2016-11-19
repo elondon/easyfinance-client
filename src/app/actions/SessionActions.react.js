@@ -6,7 +6,7 @@ import {
   REGISTER_FAIL,
   REGISTER_SUCCESS,
   USER_REGISTERED
-} from '../constants/ActionTypes';
+} from '../constants/ActionTypes.react';
 import axios from 'axios';
 
 // Register
