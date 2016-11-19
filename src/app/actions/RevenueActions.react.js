@@ -68,7 +68,7 @@ export function revenueItemChangeFailed(revenue) {
 }
 
 export function revenueItemDeleted(json) {
-  return {type: REVENUE_ITEM_DELETED, revenueId: parseInt(json.revenueId), entityId: json.entityId, receivedAt: Date.now()}
+  return {type: REVENUE_ITEM_DELETED, revenueId: json.revenueId, entityId: json.entityId, receivedAt: Date.now()}
 }
 
 export function revenueItemDeleteFailed(json) {

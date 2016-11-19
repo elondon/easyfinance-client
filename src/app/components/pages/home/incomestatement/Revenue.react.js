@@ -10,7 +10,7 @@ import {blue50} from 'material-ui/styles/colors';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import EditRevenue from './forms/EditRevenue.react.js';
-import { actions } from 'react-redux-form';
+
 
 class Revenue extends Component {
   constructor(props) {
@@ -26,6 +26,7 @@ class Revenue extends Component {
   }
 
   onEditRevenue(revenue) {
+    console.log('editing revenue ' + revenue.id);
     this.props.actions.decorateRevenueForm(revenue);
     this.props.actions.editRevenueItem(revenue.id);
   }
@@ -64,7 +65,7 @@ class Revenue extends Component {
             <div className="widget-detail-label">Total Widget Revenue:</div>
             <div className="widget-detail-value">{revenue.unitCount * revenue.unitCost}</div>
           </div>
-          <Dialog title="Edit Revenue Item" actions={actions} modal={true} open={this.props.editingRevenue}>
+          <Dialog title="Edit Revenue" actions={actions} modal={true} open={this.props.editingRevenue}>
             <EditRevenue/>
           </Dialog>
         </div>

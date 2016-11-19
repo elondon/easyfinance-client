@@ -52,7 +52,8 @@ export default function revenueReducer(state = initialState, action) {
         return state;
       }
       mutatedRevenue = _.cloneDeep(state.revenue);
-      let revenueItem = _.find(mutatedRevenue, {'id': parseInt(action.revenue.id)});
+      let revenueItem = _.find(mutatedRevenue, {'id': action.revenue.id});
+      //todo need the JS way of doing this. I'm sure assign would work.
       revenueItem.unitName = action.revenue.unitName;
       revenueItem.unitDescription = action.revenue.unitDescription;
       revenueItem.unitCost = action.revenue.unitCost;
