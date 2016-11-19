@@ -1,6 +1,7 @@
 import {REVENUE_ITEM_CHANGED, REVENUE_ITEM_CHANGE_FAILED, REVENUE_ITEM_CREATED, REVENUE_ITEM_FAILED_CREATION, REVENUE_ITEM_DELETED, REVENUE_ITEM_FAILED_DELETE, EDIT_REVENUE_ITEM, FINISH_EDITING_REVENUE_ITEM} from '../constants/ActionTypes.react';
 import { actions } from 'react-redux-form';
 import axios from 'axios';
+import {getIncomeStatement} from './EntityActions.react';
 
 export function createRevenueItem(revenue) {
   return dispatch => {
@@ -12,6 +13,7 @@ export function createRevenueItem(revenue) {
       unitCount: revenue.unitCount
     }).then(function(response) {
       dispatch(revenueItemCreated(response.data));
+      dispatch(getIncomeStatement(revenue.entityId));
     }).catch(function(error) {
       dispatch(revenueItemFailed(error));
     });
@@ -31,6 +33,7 @@ export function deleteRevenueItem(entityId, revenueId) {
     axios.delete('http://localhost:5000/easyfinance/api/v1/entity/' + entityId + '/revenue/' + revenueId, {
     }).then(function(response) {
       dispatch(revenueItemDeleted(response.data));
+      dispatch(getIncomeStatement(entityId));
     }).catch(function(error) {
       dispatch(revenueItemDeleteFailed(error));
     });
@@ -53,6 +56,7 @@ export function changeRevenueItem(revenueForm) {
       unitCount: revenueForm.unitCount
     }).then(function(response) {
       dispatch(revenueItemChanged(response.data.revenue));
+      dispatch(getIncomeStatement(revenueForm.entityId));
     }).then(function(error) {
       dispatch(revenueItemChangeFailed(error));
     });
