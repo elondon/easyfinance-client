@@ -11,13 +11,13 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import EditCost from './forms/EditCost.react.js';
 
-class Costs extends Compoent {
+class Costs extends Component {
   constructor(props) {
     super(props);
   }
 
   onCreateCost() {
-    this.props.actions.createCostItem({entityId: this.props.costParentEntityId, unitName: 'New Widget', unitDescription: '', unitCost: 0.0, unitCount: 0})
+    this.props.actions.createCostItem({entityId: this.props.costParentEntityId, name: 'New Cost', description: '', value: 0.0})
   }
 
   onDeleteCost(costId) {
@@ -45,7 +45,7 @@ class Costs extends Compoent {
       <FlatButton label = "Save" primary = {true} onTouchTap = {this.onSaveCostItem.bind(this)}/>,
       <FlatButton label = "Cancel" primary = {true} onTouchTap = {this.onFinishedEditingCostItem.bind(this)}/>
     ];
-    var costItems = this.props.cost.map(function(cost) {
+    var costItems = this.props.costs.map(function(cost) {
       return (
         <div key={cost.id} className="cost-summary-box">
           <div className="cost-controls">
@@ -54,11 +54,11 @@ class Costs extends Compoent {
           </div>
           <div className="widget-details">
             <div className="widget-detail-label">Cost Name:</div>
-            <div className="widget-detail-value">{cost.costName}</div>
+            <div className="widget-detail-value">{cost.name}</div>
           </div>
           <div className="widget-details">
             <div className="widget-detail-label">Cost:</div>
-            <div className="widget-detail-value">{cost.costValue}</div>
+            <div className="widget-detail-value">{cost.value}</div>
           </div>
           <Dialog title="Edit Cost" actions={actions} modal={true} open={this.props.editingCost}>
             <EditCost/>
@@ -88,7 +88,7 @@ class Costs extends Compoent {
 
 function mapStateToProps(state) {
   return {
-    cost: state.cost.cost,
+    costs: state.cost.costs,
     editingCost: state.cost.editingCost,
     costForm: state.forms.costForm,
     costParentEntityId: state.cost.costParentEntityId
@@ -101,4 +101,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Cost);
+export default connect(mapStateToProps, mapDispatchToProps)(Costs);

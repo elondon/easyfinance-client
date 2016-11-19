@@ -11,9 +11,9 @@ export function createCostItem(cost) {
   return dispatch => {
     axios.post('http://localhost:5000/easyfinance/api/v1/entity/' + cost.entityId + '/cost', {
       entityId: cost.entityId,
-      costName: cost.costName,
-      costDescription: cost.costDescription,
-      costValue: cost.costValue
+      name: cost.name,
+      description: cost.description,
+      value: cost.value
     }).then(function(response) {
       dispatch(costItemCreated(response.data));
       dispatch(getIncomeStatement(cost.entityId));
@@ -33,7 +33,7 @@ export function costItemFailed(json) {
 
 export function deleteCostItem(entityId, costId) {
   return dispatch => {
-    axios.delete('http://localhost:5000/easyfinance/api/v1/entity/' + costId + '/cost/' + costId, {
+    axios.delete('http://localhost:5000/easyfinance/api/v1/entity/' + entityId + '/cost/' + costId, {
     }).then(function(response) {
       dispatch(costItemDeleted(response.data));
       dispatch(getIncomeStatement(entityId));
@@ -61,10 +61,10 @@ export function decorateCostForm(cost) {
 export function changeCostItem(costForm) {
   return dispatch => {
     axios.put('http://localhost:5000/easyfinance/api/v1/entity/' + costForm.entityId + '/cost/' + costForm.id, {
-      entityId: cost.entityId,
-      costName: cost.costName,
-      costDescription: cost.costDescription,
-      costValue: cost.costValue
+      entityId: costForm.entityId,
+      name: costForm.name,
+      description: costForm.description,
+      value: costForm.value
     }).then(function(response) {
       dispatch(costItemChanged(response.data.cost));
       dispatch(getIncomeStatement(costForm.entityId));

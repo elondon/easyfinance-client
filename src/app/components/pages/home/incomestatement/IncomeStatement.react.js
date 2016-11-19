@@ -1,4 +1,5 @@
 import React, {PropTypes, Component} from 'react';
+import {connect} from 'react-redux';
 import IncomeStatementFinancials from './IncomeStatementFinancials.react'
 import Revenue from './Revenue.react'
 import Cost from './Costs.react'
@@ -10,13 +11,13 @@ class IncomeStatement extends Component {
   }
 
   renderDetails() {
-    if (this.props.revenueShowing) {
+    if (this.props.revenueShowing === true) {
       return (<Revenue/>)
     }
-    if (this.props.costShowing) {
+    if (this.props.costShowing === true) {
       return (<Cost/>)
     }
-    if (this.props.opexShowing) {
+    if (this.props.opexShowing === true) {
       return (<Opex/>)
     }
   }
@@ -36,4 +37,4 @@ function mapStateToProps(state) {
   return {revenueShowing: state.incomeStatement.revenueShowing, costShowing: state.incomeStatement.costShowing, opexShowing: state.incomeStatement.opexShowing}
 }
 
-export default IncomeStatement;
+export default connect(mapStateToProps)(IncomeStatement);

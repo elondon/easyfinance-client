@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {PropTypes, Component} from 'react';
 import { Control, Form, actions } from 'react-redux-form';
 
-class UserForm extends React.Component {
+class RevenueForm extends Component {
   render() {
     return (
       <Form model="revenueForm">

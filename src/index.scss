@@ -170,8 +170,6 @@ tml, body {
 	text-align: right;
 }
 
-
-
 .revenue-summary-box #widget-ppu #widget-unit-label {
 	width: 40%;
 }
@@ -180,6 +178,91 @@ tml, body {
 	width: 40%;
 }
 
+////////////////////////////////////////////
+//   Cost View Styles
+///////////////////////////////////////////
+.cost {
+    padding: 5px;
+    width: 45%;
+    margin: auto;
+    float: left;
+}
+
+.cost h4 {
+    height: 15px;
+		font-weight: normal;
+    display: block;
+    -webkit-margin-before: 0.2em;
+    -webkit-margin-after: 0.2em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+}
+
+.cost .cost-summary {
+    font-size: 14px;
+    align-content: center;
+    text-align: center;
+    color: black;
+    text-decoration: underline;
+}
+
+.cost .cost-summary-box {
+    background: #cd7272;
+    color: white;
+    border-radius: 5px;
+    padding: 5px;
+		margin-bottom: 10px;
+		display: inline-block;
+		width: 100%;
+}
+
+.cost .add-new-item {
+    background: #cd7272;
+    color: white;
+    border-radius: 5px;
+    margin-top: 10px;
+    padding: 5px;
+    vertical-align: middle;
+}
+
+.cost-summary-box .cost-item-clear {
+	margin-bottom: 10px;
+	width: 10%;
+	float: left;
+}
+
+.cost-summary-box .cost-item-edit {
+	margin-bottom: 10px;
+	width: 10%;
+	float: left
+}
+
+.cost-summary-box .cost-controls {
+	width: 100%;
+}
+
+.cost-summary-box .widget-details {
+	width: 100%;
+	margin: 0 auto;
+}
+
+.cost-summary-box .widget-details .widget-detail-label {
+	width: 50%;
+	float: left;
+}
+.cost-summary-box .widget-details .widget-detail-value {
+	width: 50%;
+	float: right;
+	text-align: right;
+}
+
+.cost-summary-box #widget-ppu #widget-unit-label {
+	width: 40%;
+}
+
+.cost-summary-box #widet-total-cost #widget-unit-label {
+	width: 40%;
+}
 
 .footer {
 	color: #777;

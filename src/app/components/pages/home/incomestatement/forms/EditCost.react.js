@@ -1,25 +1,25 @@
-import React from 'react';
+import React, {PropTypes, Component} from 'react';
 import { Control, Form, actions } from 'react-redux-form';
 
-class UserForm extends React.Component {
+class CostForm extends React.Component {
   render() {
     return (
       <Form model="costForm">
         <div>
           <label>Cost Item Name:</label>
-          <Control.text model="costForm.costName" />
+          <Control.text model="costForm.name" />
         </div>
         <div>
           <label>Cost Description:</label>
-          <Control.text model="costForm.costDescription" />
+          <Control.text model="costForm.description" />
         </div>
         <div>
           <label>Cost:</label>
-          <Control.text model="revenueForm.costValue" />
+          <Control.text model="costForm.value" />
         </div>
       </Form>
     );
   }
 }
 
-export default Cost;
+export default CostForm;

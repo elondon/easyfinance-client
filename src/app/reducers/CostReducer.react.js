@@ -5,17 +5,17 @@ var _ = require('lodash');
 const assign = Object.assign || require('object.assign');
 
 const initialState = {
-  cost: [],
+  costs: [],
   costParentEntityId: -1,
   editingCost: false
 }
 
 export default function costReducer(state = initialState, action) {
-  let mutatedCost = [];
+  let mutatedCosts = [];
   switch(action.type) {
     case SELECTED_ENTITY_CHANGED:
       return assign({}, state, {
-        cost: action.selectedEntity.cost,
+        costs: action.selectedEntity.costs,
         costParentEntityId: action.selectedEntity.id
       });
     case COST_ITEM_CREATED:
@@ -23,9 +23,9 @@ export default function costReducer(state = initialState, action) {
         return state;
       }
 
-      mutatedCost = _.clone(state.cost);
-      mutatedCost.push(action.cost);
-      return assign({}, state, {cost: mutatedCost});
+      mutatedCosts = _.clone(state.costs);
+      mutatedCosts.push(action.cost);
+      return assign({}, state, {costs: mutatedCosts});
       break;
     case COST_ITEM_FAILED_CREATION:
       return state;
@@ -34,11 +34,11 @@ export default function costReducer(state = initialState, action) {
       if(action.entityId !== state.costParentEntityId) {
         return state;
       }
-      mutatedCost = _.clone(state.cost);
-      _.remove(mutatedCost, {
+      mutatedCosts = _.clone(state.costs);
+      _.remove(mutatedCosts, {
           id: action.costId
       });
-      return assign({}, state, {cost: mutatedCost});
+      return assign({}, state, {costs: mutatedCosts});
       break;
     case COST_ITEM_FAILED_DELETE:
       return state;
@@ -51,13 +51,13 @@ export default function costReducer(state = initialState, action) {
       if(action.cost.entityId !== state.costParentEntityId) {
         return state;
       }
-      mutatedCost = _.cloneDeep(state.cost);
-      let costItem = _.find(mutatedCost, {'id': action.cost.id});
+      mutatedCosts = _.cloneDeep(state.costs);
+      let costItem = _.find(mutatedCosts, {'id': action.cost.id});
       //todo need the JS way of doing this. I'm sure assign would work.
-      costItem.costName = action.cost.costName;
-      costItem.costDescription = action.cost.costDescription;
-      costItem.costValue = action.cost.costValue;
-      return assign({}, state, {cost: mutatedCost});
+      costItem.name = action.cost.name;
+      costItem.description = action.cost.description;
+      costItem.value = action.cost.value;
+      return assign({}, state, {costs: mutatedCosts});
     case COST_ITEM_CHANGE_FAILED:
       return state;
     default:
