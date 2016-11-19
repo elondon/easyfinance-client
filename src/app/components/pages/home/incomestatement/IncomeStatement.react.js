@@ -1,8 +1,8 @@
 import React, {PropTypes, Component} from 'react';
 import IncomeStatementFinancials from './IncomeStatementFinancials.react'
 import Revenue from './Revenue.react'
-import Cost from './Cost.react'
-import Opex from './Opex.react'
+import Cost from './Costs.react'
+import Opex from './operatingExpenses.react'
 
 class IncomeStatement extends Component {
   constructor(props) {

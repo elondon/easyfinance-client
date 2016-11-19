@@ -6,5 +6,7 @@ class OperatingExpenses extends Component {
     super(props);
   }
 
-  render();
+  render() {
+    
+  }
 }
