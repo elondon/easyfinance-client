@@ -24,7 +24,7 @@ export function createOpexItem(opex) {
 }
 
 export function opexItemCreated(json) {
-  return {type: OPEX_ITEM_CREATED, opex: json.opex, entityId: json.opex.entityId, receivedAt: Date.now()}
+  return {type: OPEX_ITEM_CREATED, opex: json.operatingExpense, entityId: json.operatingExpense.entityId, receivedAt: Date.now()}
 }
 
 export function opexItemFailed(json) {
@@ -44,7 +44,7 @@ export function deleteOpexItem(entityId, opexId) {
 }
 
 export function opexItemDeleted(json) {
-  return {type: OPEX_ITEM_DELETED, opexId: json.opexId, entityId: json.entityId, receivedAt: Date.now()}
+  return {type: OPEX_ITEM_DELETED, opexId: json.operatingExpenseId, entityId: json.entityId, receivedAt: Date.now()}
 }
 
 export function opexItemDeleteFailed(json) {
@@ -66,7 +66,7 @@ export function changeOpexItem(opexForm) {
       description: opexForm.description,
       value: opexForm.value
     }).then(function(response) {
-      dispatch(opexItemChanged(response.data.opex));
+      dispatch(opexItemChanged(response.data.operatingExpense));
       dispatch(getIncomeStatement(opexForm.entityId));
     }).then(function(error) {
       dispatch(opexItemChangeFailed(error));

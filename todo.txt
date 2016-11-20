@@ -5,3 +5,7 @@
 - handle all fail cases
 - find more efficient way of dealing with state changes from server
 - more elegant reducers?
+- dry up code a bit between cost / opex.
+- can there be a hook to refresh the income statement after any call to the entity so it doesn't have to be manually
+  done in the actions?
+  - fix inconsistent handling of the ajax responses. always pass the actual data object as opposed to the json.

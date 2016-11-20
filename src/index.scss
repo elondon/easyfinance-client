@@ -264,6 +264,92 @@ tml, body {
 	width: 40%;
 }
 
+////////////////////////////////////////////
+//   Opex View Styles
+///////////////////////////////////////////
+.opex {
+    padding: 5px;
+    width: 45%;
+    margin: auto;
+    float: left;
+}
+
+.opex h4 {
+    height: 15px;
+		font-weight: normal;
+    display: block;
+    -webkit-margin-before: 0.2em;
+    -webkit-margin-after: 0.2em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+}
+
+.opex .opex-summary {
+    font-size: 14px;
+    align-content: center;
+    text-align: center;
+    color: black;
+    text-decoration: underline;
+}
+
+.opex .opex-summary-box {
+    background: #cd7272;
+    color: white;
+    border-radius: 5px;
+    padding: 5px;
+		margin-bottom: 10px;
+		display: inline-block;
+		width: 100%;
+}
+
+.opex .add-new-item {
+    background: #cd7272;
+    color: white;
+    border-radius: 5px;
+    margin-top: 10px;
+    padding: 5px;
+    vertical-align: middle;
+}
+
+.opex-summary-box .opex-item-clear {
+	margin-bottom: 10px;
+	width: 10%;
+	float: left;
+}
+
+.opex-summary-box .opex-item-edit {
+	margin-bottom: 10px;
+	width: 10%;
+	float: left
+}
+
+.opex-summary-box .opex-controls {
+	width: 100%;
+}
+
+.opex-summary-box .widget-details {
+	width: 100%;
+	margin: 0 auto;
+}
+
+.opex-summary-box .widget-details .widget-detail-label {
+	width: 50%;
+	float: left;
+}
+.opex-summary-box .widget-details .widget-detail-value {
+	width: 50%;
+	float: right;
+	text-align: right;
+}
+
+.opex-summary-box #widget-ppu #widget-unit-label {
+	width: 40%;
+}
+
+.opex-summary-box #widet-total-opex #widget-unit-label {
+	width: 40%;
+}
+
 .footer {
 	color: #777;
 	padding: 10px 15px;

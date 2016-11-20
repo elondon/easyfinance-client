@@ -10,6 +10,7 @@ import {blue50} from 'material-ui/styles/colors';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import EditCost from './forms/EditCost.react.js';
+import EditOpex from './forms/EditOpex.react.js';
 
 class OperatingExpenses extends Component {
   constructor(props) {
