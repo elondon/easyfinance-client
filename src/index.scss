@@ -1,6 +1,7 @@
 ////////////////////////////////////////////
 //   Layout Styles
-///////////////////////////////////////////
+/////////////////
+//////////////////////////
 tml, body {
 	margin: 0;
 	padding: 0;
@@ -37,11 +38,29 @@ tml, body {
     width: 50%;
     margin: auto;
     float: left;
+		margin-top: 10px;
 }
 
 ////////////////////////////////////////////
 //   Income Statement Financials View Styles
 ///////////////////////////////////////////
+.math-symbol {
+	width: 48px;
+	height: 48px;
+	margin-right: 10px;
+	display: inline-block;
+}
+
+.income-statement-title {
+	width: 100%;
+	height: 30px;
+}
+
+.title {
+	text-align: center;
+	text-decoration: underline;
+}
+
 .income-statement-financials {
     width: 45%;
     margin: auto;
@@ -49,11 +68,14 @@ tml, body {
     float: left;
 }
 
-.revenue-summary-box {
-    background: mediumseagreen;
-    color: white;
-    border-radius: 5px;
-    padding: 5px;
+.revenue-summary .revenue-summary-box {
+	background: mediumseagreen;
+	color: white;
+	border-radius: 5px;
+	padding: 5px;
+	width: 80%;
+	display: inline-block;
+	margin-bottom: 10px;
 }
 
 .income-statement-financials .financial-revenue-box h5 {
@@ -66,6 +88,9 @@ tml, body {
 	border-radius: 5px;
 	padding: 5px;
 	margin-bottom: 5px;
+	display: inline-block;
+	width: 80%;
+	margin-bottom: 10px;
 }
 
 .income-statement-financials .gross-profit-box {
@@ -74,6 +99,10 @@ tml, body {
 	border-radius: 5px;
 	padding: 5px;
 	margin-bottom: 5px;
+	display: inline-block;
+	width: 80%;
+	margin-bottom: 10px;
+	margin-top: 10px;
 }
 
 .income-statement-financials .operating-expenses-box {
@@ -82,6 +111,9 @@ tml, body {
 	border-radius: 5px;
 	padding: 5px;
 	margin-bottom: 5px;
+	display: inline-block;
+	width: 80%;
+	margin-bottom: 10px;
 }
 
 .income-statement-financials .ebitda-box {
@@ -90,6 +122,10 @@ tml, body {
 	border-radius: 5px;
 	padding: 5px;
 	margin-bottom: 5px;
+	display: inline-block;
+	width: 80%;
+	margin-bottom: 10px;
+	margin-top: 10px;
 }
 
 ////////////////////////////////////////////
@@ -153,11 +189,13 @@ tml, body {
 
 .revenue-summary-box .revenue-controls {
 	width: 100%;
+	height: 40px;
 }
 
 .revenue-summary-box .widget-details {
 	width: 100%;
-	margin: 0 auto;
+	margin-bottom: 5px;
+	height: 15px;
 }
 
 .revenue-summary-box .widget-details .widget-detail-label {
@@ -239,11 +277,13 @@ tml, body {
 
 .cost-summary-box .cost-controls {
 	width: 100%;
+	height: 40px;
 }
 
 .cost-summary-box .widget-details {
 	width: 100%;
-	margin: 0 auto;
+	margin-bottom: 5px;
+	height: 15px;
 }
 
 .cost-summary-box .widget-details .widget-detail-label {
@@ -325,11 +365,13 @@ tml, body {
 
 .opex-summary-box .opex-controls {
 	width: 100%;
+	height: 40px;
 }
 
 .opex-summary-box .widget-details {
 	width: 100%;
-	margin: 0 auto;
+	margin-bottom: 5px;
+	height: 15px;
 }
 
 .opex-summary-box .widget-details .widget-detail-label {

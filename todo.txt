@@ -8,4 +8,8 @@
 - dry up code a bit between cost / opex.
 - can there be a hook to refresh the income statement after any call to the entity so it doesn't have to be manually
   done in the actions?
-  - fix inconsistent handling of the ajax responses. always pass the actual data object as opposed to the json.
+- fix inconsistent handling of the ajax responses. always pass the actual data object as opposed to the json.
+- there has to be a better way to import modules/assets. Instead of from the actual file, from the root.
+/blah/blah
+instead of
+../../../../../../blah/blah

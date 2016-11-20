@@ -26,6 +26,9 @@ class IncomeStatement extends Component {
     const details = this.renderDetails();
     return (
       <div className="income-statement">
+        <div className="income-statement-title">
+          <h3 className="title">Income Statement</h3>
+        </div>
         <IncomeStatementFinancials/>
         {details}
       </div>

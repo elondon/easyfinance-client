@@ -10,7 +10,7 @@ import {blue50} from 'material-ui/styles/colors';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import EditRevenue from './forms/EditRevenue.react.js';
-
+import Divider from 'material-ui/Divider';
 
 class Revenue extends Component {
   constructor(props) {
@@ -54,15 +54,15 @@ class Revenue extends Component {
             <div className="revenue-item-edit" onClick={this.onEditRevenue.bind(this, revenue)}><Edit/></div>
           </div>
           <div className="widget-details">
-            <div className="widget-detail-label">Widget Units:</div>
+            <div className="widget-detail-label">{revenue.unitName} Units:</div>
             <div className="widget-detail-value">{revenue.unitCount}</div>
           </div>
           <div className="widget-details">
-            <div className="widget-detail-label">Widget Price Per Unit:</div>
+            <div className="widget-detail-label">{revenue.unitName} Price Per Unit:</div>
             <div className="widget-detail-value">{revenue.unitCost}</div>
           </div>
           <div className="widget-details">
-            <div className="widget-detail-label">Total Widget Revenue:</div>
+            <div className="widget-detail-label">Total {revenue.unitName} Revenue:</div>
             <div className="widget-detail-value">{revenue.unitCount * revenue.unitCost}</div>
           </div>
           <Dialog title="Edit Revenue" actions={actions} modal={true} open={this.props.editingRevenue}>
@@ -83,6 +83,7 @@ class Revenue extends Component {
           <h3>Revenue Summary</h3>
         </div>
         {revenueItems}
+        <Divider/>
         <div onClick={this.onCreateRevenue.bind(this)} className="add-new-item">
           <h4>+ Add New Revenue Item</h4>
         </div>

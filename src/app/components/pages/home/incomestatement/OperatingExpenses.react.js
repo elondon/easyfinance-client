@@ -11,6 +11,7 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import EditCost from './forms/EditCost.react.js';
 import EditOpex from './forms/EditOpex.react.js';
+import Divider from 'material-ui/Divider';
 
 class OperatingExpenses extends Component {
   constructor(props) {
@@ -79,6 +80,7 @@ class OperatingExpenses extends Component {
           <h3>Opex Summary</h3>
         </div>
         {opexItems}
+        <Divider/>
         <div onClick={this.onCreateOpex.bind(this)} className="add-new-item">
           <h4>+ Add New Opex Item</h4>
         </div>

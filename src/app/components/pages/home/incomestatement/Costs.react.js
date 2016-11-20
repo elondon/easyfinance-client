@@ -10,6 +10,7 @@ import {blue50} from 'material-ui/styles/colors';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import EditCost from './forms/EditCost.react.js';
+import Divider from 'material-ui/Divider';
 
 class Costs extends Component {
   constructor(props) {
@@ -78,6 +79,7 @@ class Costs extends Component {
           <h3>Cost Summary</h3>
         </div>
         {costItems}
+        <Divider/>
         <div onClick={this.onCreateCost.bind(this)} className="add-new-item">
           <h4>+ Add New Cost Item</h4>
         </div>
