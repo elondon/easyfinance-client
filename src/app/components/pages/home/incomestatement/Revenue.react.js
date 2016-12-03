@@ -1,12 +1,10 @@
-import React, {PropTypes, Component} from 'react';
+import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as EntityActions from '../../../../actions/EntityActions.react';
 import * as RevenueActions from '../../../../actions/RevenueActions.react';
 import Clear from 'material-ui/svg-icons/content/clear';
 import Edit from 'material-ui/svg-icons/image/edit';
-import TextField from 'material-ui/TextField';
-import {blue50} from 'material-ui/styles/colors';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import EditRevenue from './forms/EditRevenue.react.js';
@@ -18,22 +16,22 @@ class Revenue extends Component {
   }
 
   onCreateRevenue() {
-    this.props.actions.createRevenueItem({entityId: this.props.revenueParentEntityId, unitName: 'New Widget', unitDescription: '', unitCost: 0.0, unitCount: 0})
+    this.props.actions.createRevenueItem({entityId: this.props.revenueParentEntityId, unitName: 'New Widget', unitDescription: '', unitCost: 0.0, unitCount: 0});
   }
 
   onDeleteRevenue(revenueId) {
-    this.props.actions.deleteRevenueItem(this.props.revenueParentEntityId, revenueId)
+    this.props.actions.deleteRevenueItem(this.props.revenueParentEntityId, revenueId);
   }
 
   onEditRevenue(revenue) {
-    console.log('editing revenue ' + revenue.id);
+    console.log(`editing revenue ${revenue.id}`);
     this.props.actions.decorateRevenueForm(revenue);
     this.props.actions.editRevenueItem(revenue.id);
   }
 
   onFinishedEditingRevenueItem() {
     this.props.actions.finishEditingRevenueItem();
-  };
+  }
 
   onSaveRevenueItem() {
     this.props.actions.changeRevenueItem(this.props.revenueForm);
@@ -42,11 +40,11 @@ class Revenue extends Component {
 
   renderRevenueItems() {
     const actions =
-    [
-      <FlatButton label = "Save" primary = {true} onTouchTap = {this.onSaveRevenueItem.bind(this)}/>,
-      <FlatButton label = "Cancel" primary = {true} onTouchTap = {this.onFinishedEditingRevenueItem.bind(this)}/>
-    ];
-    var revenueItems = this.props.revenue.map(function(revenue) {
+      [
+        <FlatButton label="Save" primary onTouchTap={this.onSaveRevenueItem.bind(this)}/>,
+        <FlatButton label="Cancel" primary onTouchTap={this.onFinishedEditingRevenueItem.bind(this)}/>
+      ];
+    const revenueItems = this.props.revenue.map(function (revenue) {
       return (
         <div key={revenue.id} className="revenue-summary-box">
           <div className="revenue-controls">
@@ -65,18 +63,18 @@ class Revenue extends Component {
             <div className="widget-detail-label">Total {revenue.unitName} Revenue:</div>
             <div className="widget-detail-value">{revenue.unitCount * revenue.unitCost}</div>
           </div>
-          <Dialog title="Edit Revenue" actions={actions} modal={true} open={this.props.editingRevenue}>
+          <Dialog title="Edit Revenue" actions={actions} modal open={this.props.editingRevenue}>
             <EditRevenue/>
           </Dialog>
         </div>
-      )
+      );
     }, this);
 
     return revenueItems;
   }
 
   render() {
-    const revenueItems = this.renderRevenueItems()
+    const revenueItems = this.renderRevenueItems();
     return (
       <div className="revenue">
         <div className="revenue-summary">
@@ -98,7 +96,7 @@ function mapStateToProps(state) {
     editingRevenue: state.revenue.editingRevenue,
     revenueForm: state.forms.revenueForm,
     revenueParentEntityId: state.revenue.revenueParentEntityId
-  }
+  };
 }
 
 function mapDispatchToProps(dispatch) {

@@ -9,15 +9,19 @@ const autoprefixer = require('autoprefixer');
 
 module.exports = {
   module: {
-    preLoaders: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: 'eslint'
-      }
-    ],
+    /*  preLoaders: [
+        {
+          test: /\.js$/,
+          exclude: /node_modules/,
+          loader: 'eslint'
+        }
+      ],*/
 
     loaders: [
+      {
+        test: /\.(png|jpg)$/,
+        loader: 'file-loader'
+      },
       {
         test: /.json$/,
         loaders: [
@@ -26,10 +30,12 @@ module.exports = {
       },
       {
         test: /\.(css|scss)$/,
-        loaders: ExtractTextPlugin.extract({
-          fallbackLoader: 'style',
-          loader: 'css?minimize!sass!postcss'
-        })
+        loaders: [
+          'style',
+          'css',
+          'sass',
+          'postcss'
+        ]
       },
       {
         test: /\.js$/,
@@ -42,26 +48,29 @@ module.exports = {
   },
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.NoErrorsPlugin(),
     new HtmlWebpackPlugin({
-      template: conf.path.src('index.html'),
-      inject: true
+      template: conf.path.src('index.html')
     }),
+    new webpack.NoErrorsPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': '"production"'
+        'process.env.NODE_ENV': '"production"',
     }),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {unused: true, dead_code: true} // eslint-disable-line camelcase
-    }),
-    new ExtractTextPlugin('index-[contenthash].css')
+    new webpack.LoaderOptionsPlugin({
+      options: {
+        postcss: () => [autoprefixer]
+      },
+      eslint: {
+        configFile: './.eslintrc.json'
+      }
+    })
   ],
-  postcss: () => [autoprefixer],
   output: {
     path: path.join(process.cwd(), conf.paths.dist),
     filename: '[name]-[hash].js'
   },
   entry: {
     app: `./${conf.path.src('index')}`,
-    vendor: Object.keys(pkg.dependencies).filter(dep => ['todomvc-app-css'].indexOf(dep) === -1)
+    vendor: Object.keys(pkg.dependencies)
   }
 };

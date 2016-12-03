@@ -1,7 +1,6 @@
-import React, {PropTypes, Component} from 'react';
+import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import FlatButton from 'material-ui/FlatButton';
 import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
@@ -18,19 +17,27 @@ class Header extends Component {
     this.props.actions.showSideBarMenu();
   }
 
+  onHideSideBarMenu() {
+    console.log('hi');
+    this.props.actions.hideSideBarMenu();
+  }
+
   onEntityClick(entityId) {
-    console.log('Booya from ' + entityId);
+    console.log(`Booya from ${entityId}`);
+    this.onHideSideBarMenu();
   }
 
   renderLoggedIn() {
     return (
       <h3>{this.props.user.username} is logged in.</h3>
-    )
+    );
   }
 
   renderNavBarItems() {
-    var navBarItems = this.props.entities.map(function(entity) {
-      <MenuItem onTouchTap={() => this.onEntityClick(entity.id)}>{entity.name}</MenuItem>
+    const navBarItems = this.props.entities.map(function (entity) {
+      return (
+        <MenuItem onTouchTap={() => this.onEntityClick(entity.id)}>{entity.name}</MenuItem>
+      );
     }, this);
     return navBarItems;
   }
@@ -41,19 +48,16 @@ class Header extends Component {
     return (
       <div>
         <AppBar title="Easy Finance" iconElementRight={loggedIn} onLeftIconButtonTouchTap={() => this.onShowSideBarMenu()}/>
-        <Drawer
-            docked={false}
-            width={200}
-            open={this.props.sideBarShowing}>
+        <Drawer docked={false} width={300} open={this.props.sideBarShowing} onRequestChange={req => this.onHideSideBarMenu.bind(this)}>
             {navBarItems}
         </Drawer>
       </div>
-    )
+    );
   }
 }
 
 function mapStateToProps(state) {
-  return {user: state.session.user, entities: state.entity.entities, sideBarShowing: state.navigation.sideBarShowing}
+  return {user: state.session.user, entities: state.entity.entities, sideBarShowing: state.navigation.sideBarShowing};
 }
 
 function mapDispatchToProps(dispatch) {

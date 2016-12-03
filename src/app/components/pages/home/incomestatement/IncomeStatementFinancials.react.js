@@ -5,15 +5,12 @@ import * as EntityActions from '../../../../actions/EntityActions.react';
 import * as IncomeStatementActions from '../../../../actions/IncomeStatementActions.react';
 import Divider from 'material-ui/Divider';
 
-var _ = require('lodash');
-var plusSign = require('../../../../../assets/images/plus-sign-64.png');
-var minusSign = require('../../../../../assets/images/minus-sign-64.png');
-var equalsSign = require('../../../../../assets/images/equal-sign-64.png');
+const _ = require('lodash');
+const plusSign = require('../../../../../assets/images/plus-sign-64.png');
+const minusSign = require('../../../../../assets/images/minus-sign-64.png');
+const equalsSign = require('../../../../../assets/images/equal-sign-64.png');
 
 class IncomeStatementFinancials extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   onShowRevenue() {
     this.props.actions.showRevenue();

@@ -49,6 +49,7 @@ export const OPEX_ITEM_CHANGE_FAILED = 'OPEX_ITEM_CHANGE_FAILED';
 
 // navigation
 export const SHOW_SIDE_BAR_MENU = 'SHOW_SIDE_BAR_MENU';
+export const HIDE_SIDE_BAR_MENU = 'HIDE_SIDE_BAR_MENU';
 
 // income statement
 export const GET_INCOME_STATEMENT = 'GET_INCOME_STATEMENT';

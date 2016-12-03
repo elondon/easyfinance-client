@@ -1,10 +1,6 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
 
 class LandingFooter extends Component {
-  constructor() {
-    super();
-  }
-
   render() {
     return (
       <div>

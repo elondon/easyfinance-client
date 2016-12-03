@@ -1,5 +1,5 @@
-import React, {PropTypes, Component} from 'react';
-import { Control, Form, actions } from 'react-redux-form';
+import React, {Component} from 'react';
+import {Control, Form} from 'react-redux-form';
 
 class RevenueForm extends Component {
   render() {
@@ -7,15 +7,15 @@ class RevenueForm extends Component {
       <Form model="revenueForm">
         <div>
           <label>Revenue Item Name:</label>
-          <Control.text model="revenueForm.unitName" />
+          <Control.text model="revenueForm.unitName"/>
         </div>
         <div>
           <label>Revenue Item Count:</label>
-          <Control.text model="revenueForm.unitCount" />
+          <Control.text model="revenueForm.unitCount"/>
         </div>
         <div>
           <label>Revenue Item Cost:</label>
-          <Control.text model="revenueForm.unitCost" />
+          <Control.text model="revenueForm.unitCost"/>
         </div>
       </Form>
     );

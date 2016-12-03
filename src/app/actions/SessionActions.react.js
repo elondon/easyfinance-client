@@ -28,24 +28,24 @@ export function userRegistered(json) {
 
 export function registerUser(email, password) {
   return dispatch => {
-    axios.post('http://localhost:5000/easyfinance/api/v1/auth/register?username=' + email + '&password=' + password).then(function(response) {
+    axios.post(`http://localhost:5000/easyfinance/api/v1/auth/register?username=${email}&password=${password}`).then(response => {
       dispatch(userRegistered(response));
-    }).catch(function(error) {
+    }).catch(error => {
       console.log(error);
     });
-  }
+  };
 }
 
 export function loginUser(email, password) {
   return dispatch => {
-    axios.post('http://localhost:5000/easyfinance/api/v1/auth/login?email=' + email + '&password=' + password).then(function(response) {
+    axios.post(`http://localhost:5000/easyfinance/api/v1/auth/login?email=${email}&password=${password}`).then(response => {
       console.log(response);
       dispatch(userLoggedIn(response));
-    }).catch(function(error) {
+    }).catch(error => {
       //todo add fails;
       console.log(error);
     });
-  }
+  };
 }
 
 export function userLoggedIn(json) {

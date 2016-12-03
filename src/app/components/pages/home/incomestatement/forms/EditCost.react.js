@@ -1,5 +1,5 @@
-import React, {PropTypes, Component} from 'react';
-import { Control, Form, actions } from 'react-redux-form';
+import React, {Component} from 'react';
+import {Control, Form} from 'react-redux-form';
 
 class CostForm extends Component {
   render() {
@@ -7,15 +7,15 @@ class CostForm extends Component {
       <Form model="costForm">
         <div>
           <label>Cost Item Name:</label>
-          <Control.text model="costForm.name" />
+          <Control.text model="costForm.name"/>
         </div>
         <div>
           <label>Cost Description:</label>
-          <Control.text model="costForm.description" />
+          <Control.text model="costForm.description"/>
         </div>
         <div>
           <label>Cost:</label>
-          <Control.text model="costForm.value" />
+          <Control.text model="costForm.value"/>
         </div>
       </Form>
     );
